@@ -13,7 +13,6 @@ def vertex_cover(
         metric="euclidean",
         hops=1
 ):
-    print('NN...')
     n_trees = min(64, 5 + int(round((X.shape[0]) ** 0.5 / 20.0)))
     n_iters = max(5, int(round(np.log2(X.shape[0]))))
 
@@ -25,9 +24,7 @@ def vertex_cover(
         n_iters=n_iters,
         max_candidates=60
     )
-    print('Symmetrize...')
     A = to_symmetric_sparse(*knn_search_index.neighbor_graph)
-    print("VC...")
     return _vertex_cover(
         A.indptr,
         A.indices,
